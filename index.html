@@ -1617,6 +1617,9 @@ em { font-style: italic; }
 .footer .btn--primary { background: var(--milk); color: var(--graphite); --sweep: var(--olive); }
 .footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; padding-top: 24px; font-size: 0.82rem; color: rgba(247, 245, 240, .55); }
 
+.swipe-nav { display: none; }
+@keyframes nudge-small { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+
 /* privacy policy shown in a wide modal (single-file build) */
 .modal.modal--legal { width: min(880px, calc(100% - 32px)); }
 .legal--modal { padding: 0; }
@@ -1930,10 +1933,41 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
   .about__media { padding-bottom: 0; }
   .about__quote { position: relative; right: auto; width: auto; margin: -64px 16px 0; padding: 24px; }
 
-  .dir-grid { grid-template-columns: 1fr; gap: 14px; }
-  .dir-grid > li:nth-child(even) { margin-top: 0; }
-  .flip { height: 570px; }
-  .flip__front, .flip__back { padding: 24px; }
+  /* cards become a swipeable row; the next card peeks in from the right */
+  .dir-grid {
+    display: flex;
+    gap: 12px;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 6px var(--gutter) 18px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .dir-grid::-webkit-scrollbar { display: none; }
+  .dir-grid > li:nth-child(n), .values .dir-grid--values > li:nth-child(n) { flex: 0 0 84%; margin-top: 0; scroll-snap-align: start; }
+  .flip { height: 610px; }
+  .values .flip { height: 540px; }
+  .flip__front, .flip__back { padding: 24px 20px; }
+  /* two round arrows under the row: back and forward */
+  .swipe-nav { display: flex; justify-content: center; gap: 12px; margin-top: 4px; }
+  .swipe-nav__btn {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid var(--green);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--green);
+    transition: background-color .3s var(--ease), color .3s var(--ease), opacity .3s var(--ease);
+  }
+  .swipe-nav__btn--next { background: var(--green); color: #fff; }
+  .swipe-nav__btn:disabled { opacity: .3; cursor: default; }
+  .swipe-nav__btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .swipe-nav__btn--next:not(:disabled) svg { animation: nudge-small 1.8s var(--ease) infinite; }
 
   .steps { grid-template-columns: 1fr; gap: 0; padding-left: 4px; }
   .steps::before { display: block; left: 10px; right: auto; top: 10px; bottom: 10px; width: 1px; height: auto; }
@@ -2157,7 +2191,7 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
           </div>
           <div class="about__sign reveal">
             <span class="about__signature">Анна Марчук</span>
-            <span class="about__member">Членкиня Української асоціації когнітивно-поведінкової терапії (УАКПТ)</span>
+            <span class="about__member">Учасниця Української асоціації когнітивно-поведінкової терапії (УАКПТ)</span>
           </div>
         </div>
       </div>
@@ -2343,6 +2377,10 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
             </article>
           </li>
         </ul>
+        <div class="swipe-nav" data-swipe-nav>
+          <button class="swipe-nav__btn" type="button" data-swipe="-1" aria-label="Попередня картка"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m5-5-5 5 5 5"/></svg></button>
+          <button class="swipe-nav__btn swipe-nav__btn--next" type="button" data-swipe="1" aria-label="Наступна картка"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></button>
+        </div>
 
         <!-- Full descriptions (shown inside the modal) -->
         <div class="dir-details" hidden>
@@ -2736,6 +2774,10 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
             </article>
           </li>
         </ul>
+        <div class="swipe-nav" data-swipe-nav>
+          <button class="swipe-nav__btn" type="button" data-swipe="-1" aria-label="Попередня картка"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m5-5-5 5 5 5"/></svg></button>
+          <button class="swipe-nav__btn swipe-nav__btn--next" type="button" data-swipe="1" aria-label="Наступна картка"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></button>
+        </div>
       </div>
     </section>
 
@@ -3585,6 +3627,31 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
       if (!res.ok) throw new Error('Form submission failed: ' + res.status);
     });
   }
+
+  /* ---------- phone: arrows that scroll a card row back and forward ---------- */
+  document.querySelectorAll('[data-swipe-nav]').forEach(function (nav) {
+    var row = nav.previousElementSibling;
+    if (!row) return;
+    var prev = nav.querySelector('[data-swipe="-1"]');
+    var next = nav.querySelector('[data-swipe="1"]');
+    var step = function () {
+      var card = row.firstElementChild;
+      return card ? card.getBoundingClientRect().width + parseFloat(getComputedStyle(row).columnGap || 0) : row.clientWidth;
+    };
+    var update = function () {
+      var max = row.scrollWidth - row.clientWidth - 2;
+      prev.disabled = row.scrollLeft <= 2;
+      next.disabled = row.scrollLeft >= max;
+    };
+    nav.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-swipe]');
+      if (!btn) return;
+      row.scrollBy({ left: step() * +btn.getAttribute('data-swipe'), behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+    row.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
 
   /* ---------- sign-up form on the back of the call-to-action card ---------- */
   document.querySelectorAll('[data-card-form]').forEach(function (wrap) {
