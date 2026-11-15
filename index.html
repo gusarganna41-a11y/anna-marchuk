@@ -1265,14 +1265,15 @@ em { font-style: italic; }
 
 @media (max-width: 900px) {
   .folder__panel { grid-template-columns: minmax(0, 1fr); }
-  .folder__aside { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .folder__aside { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; }
   .folder__count { margin-top: 0; }
 }
 @media (max-width: 640px) {
   .edu-folder__stats dd br { display: none; }
-  .folder__tabs { padding-left: 8px; }
-  .folder__tab { min-height: 46px; padding: 0 18px; font-size: 1rem; }
-  .folder__tab[aria-selected="true"]::after { left: 18px; right: 18px; bottom: 8px; }
+  /* all six year tabs fit on one screen, no sideways scrolling */
+  .folder__tabs { gap: 3px; padding-left: 0; overflow: visible; }
+  .folder__tab { flex: 1 1 auto; min-width: 0; min-height: 44px; padding: 0 4px; border-radius: 12px 12px 0 0; font-size: .82rem; white-space: nowrap; }
+  .folder__tab[aria-selected="true"]::after { left: 8px; right: 8px; bottom: 8px; }
   .folder__body { padding: 22px 18px; border-radius: 0 20px 20px 20px; }
   .folder__body::before { inset: 10px -6px -8px 10px; border-radius: 0 20px 20px 20px; }
   .folder__docs, .folder__docs--3, .folder__docs--5 { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; }
@@ -1933,10 +1934,10 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
   .about__media { padding-bottom: 0; }
   .about__quote { position: relative; right: auto; width: auto; margin: -64px 16px 0; padding: 24px; }
 
-  /* cards become a swipeable row; the next card peeks in from the right */
+  /* cards become a swipeable row: exactly one card fills the screen, the next one stays hidden */
   .dir-grid {
     display: flex;
-    gap: 12px;
+    gap: calc(var(--gutter) * 2);
     margin-inline: calc(var(--gutter) * -1);
     padding: 6px var(--gutter) 18px;
     overflow-x: auto;
@@ -1946,7 +1947,7 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
     -webkit-overflow-scrolling: touch;
   }
   .dir-grid::-webkit-scrollbar { display: none; }
-  .dir-grid > li:nth-child(n), .values .dir-grid--values > li:nth-child(n) { flex: 0 0 84%; margin-top: 0; scroll-snap-align: start; }
+  .dir-grid > li:nth-child(n), .values .dir-grid--values > li:nth-child(n) { flex: 0 0 100%; margin-top: 0; scroll-snap-align: start; scroll-snap-stop: always; }
   .flip { height: 610px; }
   .values .flip { height: 540px; }
   .flip__front, .flip__back { padding: 24px 20px; }
@@ -2018,6 +2019,8 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
   .header__social-link svg { width: 16px; height: 16px; }
   .btn { font-size: .82rem; }
   .btn--bubble { gap: 10px; padding-left: 16px; }
+  .folder__tabs { gap: 2px; }
+  .folder__tab { padding: 0 2px; font-size: .72rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2182,7 +2185,7 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
         </div>
 
         <div class="about__content">
-          <h2 class="h2 reveal" id="about-title">Давайте знайомитися ближче</h2>
+          <h2 class="h2 reveal" id="about-title">Познайомимося ближче</h2>
           <p class="about__lead reveal">Я&nbsp;вірю, що&nbsp;кожна людина заслуговує на&nbsp;простір, де її почують, зрозуміють і&nbsp;приймуть без&nbsp;осуду.</p>
           <div class="about__text reveal">
             <p>Я&nbsp;— Анна Марчук, психологиня. Допомагаю людям краще розуміти себе, долати внутрішні труднощі та&nbsp;знаходити опору в&nbsp;непрості періоди життя.</p>
@@ -2204,7 +2207,7 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
           <div>
             <h2 class="h2 reveal" id="directions-title">З&nbsp;чим я&nbsp;можу вам&nbsp;допомогти?</h2>
           </div>
-          <p class="section-head__sub reveal">Не&nbsp;обов'язково справлятися з&nbsp;усім самостійно. Разом ми&nbsp;зможемо розібратися з&nbsp;тим, що&nbsp;турбує саме вас.</p>
+          <p class="section-head__sub reveal">Не обов'язково впоруватися з усім самостійно. Разом ми&nbsp;зможемо розібратися з&nbsp;тим, що&nbsp;турбує саме вас.</p>
         </div>
 
         <ul class="dir-grid">
@@ -2308,7 +2311,7 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                 <div class="flip__face flip__back">
                   <span class="flip__num flip__num--back">04</span>
                   <p class="flip__back-title">Наслідки травматичного досвіду</p>
-                  <p class="flip__text">Працюємо з&nbsp;наслідками травматичних подій, почуттям провини, сорому та&nbsp;тривогою. Особливу увагу приділяю відчуттю безпеки й&nbsp;індивідуальному темпу роботи.</p>
+                  <p class="flip__text">Працюємо з&nbsp;наслідками травматичних подій, почуттям провини, сорому та&nbsp;тривогою. Особливу увагу приділяю відчуттю безпеки та індивідуальному темпу роботи.</p>
                   <div class="flip__signs" data-signs></div>
                   <div class="flip__actions">
                     <button class="flip__more" type="button" data-open-contact="booking">Записатися на&nbsp;консультацію</button>
@@ -2454,7 +2457,7 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <li>звичку ставити потреби інших вище за&nbsp;власні.</li>
             </ul>
             <h4>Як&nbsp;ми&nbsp;працюємо</h4>
-            <p>Помічаємо та&nbsp;переглядаємо переконання, які знецінюють вас, розвиваємо навичку самопідтримки й&nbsp;вчимося чути власні потреби. Арттерапія тут допомагає побачити себе з&nbsp;нового, м'якшого ракурсу.</p>
+            <p>Помічаємо та&nbsp;переглядаємо переконання, які знецінюють вас, розвиваємо навичку самопідтримки та вчимося чути власні потреби. Арттерапія тут допомагає побачити себе з&nbsp;нового, м'якшого ракурсу.</p>
           </article>
         </div>
       </div>
@@ -2796,8 +2799,8 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
             <p class="edu-folder__sub reveal">Навчання, нові знання та&nbsp;вдосконалення навичок — важлива частина моєї практики.</p>
           </div>
           <dl class="edu-folder__stats reveal">
-            <div><dt><span data-count="16">16</span></dt><dd>програм<br>і&nbsp;курсів</dd></div>
-            <div><dt><span data-count="10">10</span></dt><dd>років<br>навчання</dd></div>
+            <div><dt><span data-count="16">16</span></dt><dd>програм <br>і&nbsp;курсів</dd></div>
+            <div><dt><span data-count="10">10</span></dt><dd>років <br>навчання</dd></div>
           </dl>
         </div>
 
@@ -2821,7 +2824,7 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                 <li class="doc doc--main">
                   <span class="doc__kind">Диплом бакалавра</span>
                   <p class="doc__title">Ужгородський національний університет</p>
-                  <p class="doc__text">Бакалавр психології. Фундаментальна підготовка з&nbsp;загальної, вікової та&nbsp;клінічної психології, основ психодіагностики й&nbsp;консультування.</p>
+                  <p class="doc__text">Бакалавр психології. Фундаментальна підготовка із загальної, вікової та&nbsp;клінічної психології, основ психодіагностики й&nbsp;консультування.</p>
                 </li>
               </ul>
             </div>
@@ -2995,7 +2998,7 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
           <div class="acc-item reveal">
             <h3><button class="acc-item__btn" type="button" aria-expanded="false" aria-controls="faq-5" id="faq-5-btn">Як&nbsp;проходять онлайн-консультації?<span class="acc-item__icon" aria-hidden="true"></span></button></h3>
             <div class="acc-item__panel" id="faq-5" role="region" aria-labelledby="faq-5-btn"><div class="acc-item__inner">
-              <p>Ми&nbsp;зустрічаємося у&nbsp;відеозв'язку на&nbsp;зручній для&nbsp;вас&nbsp;платформі — Zoom, Google Meet або Telegram. Після запису ви&nbsp;отримаєте посилання та&nbsp;нагадування про&nbsp;зустріч. Оплата — переказом на&nbsp;банківський рахунок. Важливо лише, щоб ви&nbsp;почувалися у&nbsp;безпеці та&nbsp;могли говорити вільно.</p>
+              <p>Ми зустрічаємося онлайн через відеозв'язок на зручній для вас платформі — Zoom, Google Meet або Telegram. Після запису ви&nbsp;отримаєте посилання та&nbsp;нагадування про&nbsp;зустріч. Оплата — переказом на&nbsp;банківський рахунок. Важливо лише, щоб ви&nbsp;почувалися у&nbsp;безпеці та&nbsp;могли говорити вільно.</p>
             </div></div>
           </div>
           <div class="acc-item reveal">
