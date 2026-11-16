@@ -1392,8 +1392,9 @@ em { font-style: italic; }
   stroke-dasharray: 339.3;
   stroke-dashoffset: 56.55;
 }
-.js .offer .offer__ring-fill { stroke-dashoffset: 339.3; transition: stroke-dashoffset 1.8s var(--ease) .3s; }
-.js .offer.is-visible .offer__ring-fill { stroke-dashoffset: 56.55; }
+/* the ring empties out of view and fills again every time the card scrolls back in */
+.js .offer .offer__ring-fill { stroke-dashoffset: 339.3; transition: none; }
+.js .offer.is-counting .offer__ring-fill { stroke-dashoffset: 56.55; transition: stroke-dashoffset 1.8s var(--ease) .15s; }
 .offer__minutes {
   position: absolute;
   inset: 0;
@@ -2216,7 +2217,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1638274749450-30c893afe3d1?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1638274749450-30c893afe3d1?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1638274749450-30c893afe3d1?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1638274749450-30c893afe3d1?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Жінка в тривозі тримається руками за голову">
-                  <span class="flip__num">01</span>
                   <h3 class="flip__title">Тривожність і&nbsp;панічні стани</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Тривожність і&nbsp;панічні стани</span>
@@ -2225,7 +2225,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">01</span>
                   <p class="flip__back-title">Тривожність і&nbsp;панічні стани</p>
                   <p class="flip__text">Допомагаю розпізнавати причини тривоги, працювати з&nbsp;нав'язливими думками, знижувати емоційну напругу та&nbsp;повертати відчуття безпеки.</p>
                   <div class="flip__signs" data-signs></div>
@@ -2244,7 +2243,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1713947503867-3b27964f042b?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1713947503867-3b27964f042b?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1713947503867-3b27964f042b?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1713947503867-3b27964f042b?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Виснажений чоловік сидить за робочим столом, схилившись на руки">
-                  <span class="flip__num">02</span>
                   <h3 class="flip__title">Емоційне вигорання</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Емоційне вигорання</span>
@@ -2253,7 +2251,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">02</span>
                   <p class="flip__back-title">Емоційне вигорання</p>
                   <p class="flip__text">Разом досліджуємо причини виснаження, вчимося помічати власні потреби, відновлювати ресурси та&nbsp;встановлювати здорові особисті кордони.</p>
                   <div class="flip__signs" data-signs></div>
@@ -2272,7 +2269,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1715631624898-79185c426f45?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1715631624898-79185c426f45?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1715631624898-79185c426f45?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1715631624898-79185c426f45?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Чорно-біле фото засмученої жінки з опущеним поглядом">
-                  <span class="flip__num">03</span>
                   <h3 class="flip__title">Переживання горя та&nbsp;втрат</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Переживання горя та&nbsp;втрат</span>
@@ -2281,7 +2277,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">03</span>
                   <p class="flip__back-title">Переживання горя та&nbsp;втрат</p>
                   <p class="flip__text">Підтримую у&nbsp;складному процесі проживання втрати, допомагаю поступово адаптуватися до&nbsp;змін і&nbsp;знаходити сили рухатися далі.</p>
                   <div class="flip__signs" data-signs></div>
@@ -2300,7 +2295,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1758575330984-9abbfb063374?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1758575330984-9abbfb063374?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1758575330984-9abbfb063374?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1758575330984-9abbfb063374?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Людина сидить на траві, обійнявши коліна">
-                  <span class="flip__num">04</span>
                   <h3 class="flip__title">Наслідки травматичного досвіду</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Наслідки травматичного досвіду</span>
@@ -2309,7 +2303,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">04</span>
                   <p class="flip__back-title">Наслідки травматичного досвіду</p>
                   <p class="flip__text">Працюємо з&nbsp;наслідками травматичних подій, почуттям провини, сорому та&nbsp;тривогою. Особливу увагу приділяю відчуттю безпеки та індивідуальному темпу роботи.</p>
                   <div class="flip__signs" data-signs></div>
@@ -2328,7 +2321,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1541089303989-58337ba10a2c?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1541089303989-58337ba10a2c?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1541089303989-58337ba10a2c?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1541089303989-58337ba10a2c?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Пара в обіймах, жінка задумливо дивиться вбік">
-                  <span class="flip__num">05</span>
                   <h3 class="flip__title">Співзалежність у&nbsp;стосунках</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Співзалежність у&nbsp;стосунках</span>
@@ -2337,7 +2329,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">05</span>
                   <p class="flip__back-title">Співзалежність у&nbsp;стосунках</p>
                   <p class="flip__text">Допомагаю краще зрозуміти моделі поведінки у&nbsp;стосунках, відновлювати самоцінність, особисті кордони та&nbsp;емоційну незалежність.</p>
                   <div class="flip__signs" data-signs></div>
@@ -2356,7 +2347,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1610879328910-2e1ab1a109e6?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1610879328910-2e1ab1a109e6?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1610879328910-2e1ab1a109e6?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1610879328910-2e1ab1a109e6?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Жінка дивиться на своє відображення у дзеркалі">
-                  <span class="flip__num">06</span>
                   <h3 class="flip__title">Внутрішня опора та&nbsp;самооцінка</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Внутрішня опора та&nbsp;самооцінка</span>
@@ -2365,7 +2355,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">06</span>
                   <p class="flip__back-title">Внутрішня опора та&nbsp;самооцінка</p>
                   <p class="flip__text">Працюємо над&nbsp;прийняттям себе, розвитком самопідтримки, усвідомленням власних потреб і&nbsp;довірою до&nbsp;своїх рішень.</p>
                   <div class="flip__signs" data-signs></div>
@@ -2565,7 +2554,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1610986719243-7cdf28a29772?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1610986719243-7cdf28a29772?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1610986719243-7cdf28a29772?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1610986719243-7cdf28a29772?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Одна людина підтримує іншу, тримаючи її за руку">
-                  <span class="flip__num">01</span>
                   <h3 class="flip__title">Конфіденційність і&nbsp;довіра</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Конфіденційність і&nbsp;довіра</span>
@@ -2574,7 +2562,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">01</span>
                   <p class="flip__back-title">Конфіденційність і&nbsp;довіра</p>
                   <p class="flip__text">Усе, чим ви&nbsp;ділитеся під&nbsp;час консультацій, залишається конфіденційним відповідно до&nbsp;професійних та&nbsp;етичних принципів роботи.</p>
                   <div class="flip__actions">
@@ -2592,7 +2579,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1701988820863-7f305986876b?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1701988820863-7f305986876b?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1701988820863-7f305986876b?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1701988820863-7f305986876b?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Дві жінки міцно обіймаються серед високої трави">
-                  <span class="flip__num">02</span>
                   <h3 class="flip__title">Безоцінковість</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Безоцінковість</span>
@@ -2601,7 +2587,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">02</span>
                   <p class="flip__back-title">Безоцінковість</p>
                   <p class="flip__text">Я&nbsp;не&nbsp;оцінюю ваші почуття та&nbsp;не&nbsp;нав'язую власного бачення ситуації. Важливо все, що&nbsp;ви&nbsp;відчуваєте.</p>
                   <div class="flip__actions">
@@ -2619,7 +2604,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1667644813320-0c6bf26a015d?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1667644813320-0c6bf26a015d?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1667644813320-0c6bf26a015d?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1667644813320-0c6bf26a015d?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Жінка в полі розкинула руки назустріч небу">
-                  <span class="flip__num">03</span>
                   <h3 class="flip__title">Свобода бути собою</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Свобода бути собою</span>
@@ -2628,7 +2612,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">03</span>
                   <p class="flip__back-title">Свобода бути собою</p>
                   <p class="flip__text">Ви&nbsp;можете говорити відкрито, не&nbsp;підбираючи правильних слів і&nbsp;не&nbsp;намагаючись здаватися кращими.</p>
                   <div class="flip__actions">
@@ -2646,7 +2629,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1762770665765-de232b512652?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1762770665765-de232b512652?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1762770665765-de232b512652?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1762770665765-de232b512652?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Жінка неспішно йде лісовою стежкою">
-                  <span class="flip__num">04</span>
                   <h3 class="flip__title">Повага до&nbsp;вашого темпу</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Повага до&nbsp;вашого темпу</span>
@@ -2655,7 +2637,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">04</span>
                   <p class="flip__back-title">Повага до&nbsp;вашого темпу</p>
                   <p class="flip__text">Кожна людина має власний ритм. Я&nbsp;не&nbsp;кваплю, не&nbsp;тисну й&nbsp;не&nbsp;очікую миттєвих змін.</p>
                   <div class="flip__actions">
@@ -2673,7 +2654,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
               <div class="flip__inner">
                 <div class="flip__face flip__front">
                   <img class="flip__img" src="https://images.unsplash.com/photo-1654542645651-5196f4931cd6?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820" srcset="https://images.unsplash.com/photo-1654542645651-5196f4931cd6?auto=format&amp;fit=crop&amp;q=70&amp;w=420&amp;h=540 420w, https://images.unsplash.com/photo-1654542645651-5196f4931cd6?auto=format&amp;fit=crop&amp;q=70&amp;w=640&amp;h=820 640w, https://images.unsplash.com/photo-1654542645651-5196f4931cd6?auto=format&amp;fit=crop&amp;q=70&amp;w=900&amp;h=1150 900w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" width="640" height="820" loading="lazy" alt="Зелений блокнот і ручка на дерев'яному столі">
-                  <span class="flip__num">05</span>
                   <h3 class="flip__title">Доказовість та&nbsp;професійна етика</h3>
                   <button class="flip__toggle" type="button" aria-expanded="false">
                     <span class="visually-hidden">Показати опис: Доказовість та&nbsp;професійна етика</span>
@@ -2682,7 +2662,6 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
                   </button>
                 </div>
                 <div class="flip__face flip__back">
-                  <span class="flip__num flip__num--back">05</span>
                   <p class="flip__back-title">Доказовість та&nbsp;професійна етика</p>
                   <p class="flip__text">Працюю в&nbsp;межах своєї компетенції, використовую сучасні психологічні підходи та&nbsp;постійно вдосконалюю професійні навички.</p>
                   <div class="flip__actions">
@@ -3500,27 +3479,56 @@ button[type="submit"]:disabled { opacity: .6; cursor: progress; }
   var eduVideo = document.querySelector('.edu-folder__video');
   if (eduVideo && reduceMotion) { eduVideo.removeAttribute('autoplay'); eduVideo.pause(); }
 
-  // count the numbers up once they appear
-  var counters = document.querySelectorAll('[data-count]');
+  // numbers count up from zero; a new run cancels the previous one
+  var countUp = function (el, duration) {
+    var target = +el.getAttribute('data-count');
+    var run = (el._countRun || 0) + 1;
+    var start = null;
+    el._countRun = run;
+    var step = function (t) {
+      if (el._countRun !== run) return;
+      if (start === null) start = t;
+      var k = Math.min(1, (t - start) / duration);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  var resetCount = function (el) { el._countRun = (el._countRun || 0) + 1; el.textContent = '0'; };
+
+  var offerCard = document.querySelector('[data-offer]');
   if (!reduceMotion && 'IntersectionObserver' in window) {
-    counters.forEach(function (el) { el.textContent = '0'; });
+    // education stats: count once
+    var counters = Array.prototype.filter.call(document.querySelectorAll('[data-count]'), function (el) {
+      return !offerCard || !offerCard.contains(el);
+    });
+    counters.forEach(resetCount);
     var countObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         countObserver.unobserve(entry.target);
-        var el = entry.target;
-        var target = +el.getAttribute('data-count');
-        var start = null;
-        var step = function (t) {
-          if (start === null) start = t;
-          var k = Math.min(1, (t - start) / 1400);
-          el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3)));
-          if (k < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
+        countUp(entry.target, 1400);
       });
     }, { threshold: 0.6 });
     counters.forEach(function (el) { countObserver.observe(el); });
+
+    // pricing card: the minutes ring and the price replay every time the card comes into view,
+    // scrolling down or up, on any screen size
+    if (offerCard) {
+      var offerCounters = offerCard.querySelectorAll('[data-count]');
+      offerCounters.forEach(resetCount);
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            offerCard.classList.add('is-counting');
+            offerCounters.forEach(function (el) { countUp(el, 1600); });
+          } else {
+            offerCard.classList.remove('is-counting');
+            offerCounters.forEach(resetCount);
+          }
+        });
+      }, { threshold: 0.25 }).observe(offerCard.querySelector('.offer__side'));
+    }
   }
 
   /* ---------- modal helpers ---------- */
